@@ -13,3 +13,6 @@ Start the dev server,
 ```bash
 $ yarn start
 ```
+
+# gh-pages
+https://leirong.github.io/wzry-database-client/

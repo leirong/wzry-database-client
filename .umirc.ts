@@ -11,10 +11,12 @@ export default defineConfig({
   antd: {},
   fastRefresh: {},
   proxy: {
-    '/api': {
-      'target': 'https://pvp.qq.com',
-      'changeOrigin': true,
-      'pathRewrite': { '^/api' : '' },
+    '/api/': {
+      target: 'https://pvp.qq.com',
+      changeOrigin: true,
+      pathRewrite: { '^/api/': '' },
     },
   },
+  base: '/wzry-database-client/',
+  publicPath: '/wzry-database-client/',
 });
