@@ -1,4 +1,5 @@
 import { Effect, Reducer, Subscription, request } from 'umi';
+import herolistJson from '../../mock/herolist.json';
 
 export interface HeroProps {
   ename: number;
@@ -58,7 +59,8 @@ const HeroModel: HeroModelType = {
       //     }),
       // }
       // const data = yield request('/web201605/js/herolist.json', options);
-      const data = yield request('mock/web201605/js/herolist.json');
+      // const data = yield request('mock/web201605/js/herolist.json');
+      const data = herolistJson;
       const localData = [
         {
           ename: 105,

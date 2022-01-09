@@ -1,4 +1,5 @@
 import { Effect, Reducer, Subscription, request } from 'umi';
+import itemJson from '../../mock/item.json';
 
 export interface ItemProps {
   item_id: number;
@@ -38,7 +39,8 @@ const ItemModel: ItemModelType = {
   effects: {
     *query({ payload }, { call, put }) {},
     *fetch({ type, payload }, { put, call, select }) {
-      const data = yield request('mock/web201605/js/item.json');
+      //   const data = yield request('mock/web201605/js/item.json');
+      const data = itemJson;
       const localData: any = [];
       yield put({
         type: 'save',

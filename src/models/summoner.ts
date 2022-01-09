@@ -1,4 +1,5 @@
 import { Effect, Reducer, request, Subscription } from 'umi';
+import summonerJson from '../../mock/summoner.json';
 
 export interface SummonerProps {
   summoner_id: number;
@@ -34,7 +35,8 @@ const SummonerModel: SummonerModelType = {
   effects: {
     *query({ payload }, { call, put }) {},
     *fetch({ type, payload }, { put, call, select }) {
-      const data = yield request('mock/web201605/js/summoner.json');
+      // const data = yield request('mock/web201605/js/summoner.json');
+      const data = summonerJson;
       const localData: any = [];
       yield put({
         type: 'save',
