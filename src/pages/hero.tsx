@@ -20,6 +20,14 @@ const heroTypes = [
   { key: 6, value: '辅助' },
 ];
 
+const ColProps = {
+  xs: 12,
+  sm: 8,
+  md: 6,
+  lg: 4,
+  xl: 3,
+};
+
 const Hero: FC<PageProps> = (props: any) => {
   const {
     hero: {
@@ -35,22 +43,22 @@ const Hero: FC<PageProps> = (props: any) => {
     dispatch,
   } = props;
   const onChange = (e: any) => {
-    dispatch({ type: 'hero/save', payload: { heroType: e.target.value }})
-  }
+    dispatch({ type: 'hero/save', payload: { heroType: e.target.value } });
+  };
 
   const onFreeItemHover = (thisIndex: number) => {
-    dispatch({ type: 'hero/save', payload: { freeItemHover: thisIndex }})
-  }
+    dispatch({ type: 'hero/save', payload: { freeItemHover: thisIndex } });
+  };
 
   const onNewbieItemHover = (thisIndex: number) => {
-    dispatch({ type: 'hero/save', payload: { newbieItemHover: thisIndex }})
-  }
+    dispatch({ type: 'hero/save', payload: { newbieItemHover: thisIndex } });
+  };
 
   const toHerodetail = (ename: number) => {
     // const _heroItem = heros.find((item: HeroProps) => item.ename === ename);
     // dispatch({ type: 'hero/save', payload: { heroItem: _heroItem }})
     history.push(`herodetail/${ename}`);
-  }
+  };
 
   return (
     <div>
@@ -58,22 +66,28 @@ const Hero: FC<PageProps> = (props: any) => {
       {/* <h2>This is {JSON.stringify(heros)}</h2> */}
       <Card className={styles.card}>
         <RadioGroup onChange={onChange} value={heroType}>
-          {
-            heroTypes.map(({key, value}, index) => (
-              <Radio value={key} key={index}>{value}</Radio>
-            ))
-          }
+          {heroTypes.map(({ key, value }, index) => (
+            <Radio value={key} key={index}>
+              {value}
+            </Radio>
+          ))}
         </RadioGroup>
       </Card>
       <Row>
-        {
-          heros.filter((item: HeroProps) => heroType === 0 || item.hero_type === heroType).reverse().map(({ename, cname}: HeroProps) => (
-            <Col span={3} key={ename} className={styles.heroitem}>
-              <img src={`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${ename}/${ename}.jpg`} onClick={() => toHerodetail(ename)}/>
+        {heros
+          .filter(
+            (item: HeroProps) => heroType === 0 || item.hero_type === heroType,
+          )
+          .reverse()
+          .map(({ ename, cname }: HeroProps) => (
+            <Col {...ColProps} key={ename} className={styles.heroitem}>
+              <img
+                src={`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${ename}/${ename}.jpg`}
+                onClick={() => toHerodetail(ename)}
+              />
               <p>{cname}</p>
             </Col>
-          ))
-        }
+          ))}
       </Row>
       <div className={styles.normal}>
         <div className={styles.info}>
@@ -81,7 +95,7 @@ const Hero: FC<PageProps> = (props: any) => {
             <Col span={24}>
               <p>周免英雄</p>
               <div>
-                {freeheros.map((data: HeroProps,index: number) => (
+                {freeheros.map((data: HeroProps, index: number) => (
                   <FreeHeroItem
                     data={data}
                     itemHover={freeItemHover}
@@ -99,7 +113,7 @@ const Hero: FC<PageProps> = (props: any) => {
             <Col span={24}>
               <p>新手推荐</p>
               <div>
-                {newbieheros.map((data: HeroProps,index: number) => (
+                {newbieheros.map((data: HeroProps, index: number) => (
                   <FreeHeroItem
                     data={data}
                     itemHover={newbieItemHover}
@@ -112,9 +126,12 @@ const Hero: FC<PageProps> = (props: any) => {
             </Col>
           </Row>
         </div>
-      </div>
+         {' '}
+      </div>
     </div>
   );
-}
+};
 
-export default connect(({ hero }: { hero: HeroModelState }) => ({ hero }))(Hero);
+export default connect(({ hero }: { hero: HeroModelState }) => ({ hero }))(
+  Hero,
+);

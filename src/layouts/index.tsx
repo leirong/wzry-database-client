@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
 import styles from './index.less';
-import { Link } from 'umi';
+import { Link, history } from 'umi';
 const { Header, Content, Footer } = Layout;
 
 const menuData = [
@@ -29,7 +29,11 @@ export default (props: any) => {
     children,
     location: { pathname },
   } = props;
-  const _pathname = pathname === '/' ? '/hero' : pathname;
+  const paths = ['/', '/gh-pages/', '/wzry-database-client/gh-pages/'];
+  const _pathname = paths.includes(pathname) ? '/hero' : pathname;
+  if (paths.includes(pathname)) {
+    history.push(_pathname);
+  }
   return (
     <Layout
       style={{
@@ -51,7 +55,7 @@ export default (props: any) => {
           ))}
         </Menu>
       </Header>
-      <Content style={{ padding: '0 50px', overflow: 'auto' }}>
+      <Content style={{ padding: '0 24px', overflow: 'auto' }}>
         <div style={{ background: '#fff', padding: 24, minHeight: '100%' }}>
           {children}
         </div>

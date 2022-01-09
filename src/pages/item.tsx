@@ -18,43 +18,54 @@ const itemTypes = [
   { key: 7, value: '辅助' },
 ];
 
+const ColProps = {
+  xs: 12,
+  sm: 8,
+  md: 6,
+  lg: 4,
+  xl: 3,
+};
+
 const Item: FC<PageProps> = (props) => {
   const {
-    item: {
-      name,
-      items,
-      itemType,
-    },
+    item: { name, items, itemType },
     dispatch,
   } = props;
   const onChange = (e: any) => {
-    dispatch({ type: 'item/save', payload: { itemType: e.target.value }})
-  }
+    dispatch({ type: 'item/save', payload: { itemType: e.target.value } });
+  };
   return (
     <div>
       {/* <h1 className={styles.title}>Page {name}</h1>
       <h2>This is {JSON.stringify(items)}</h2> */}
       <Card className={styles.card}>
         <RadioGroup onChange={onChange} value={itemType}>
-          {
-            itemTypes.map(({key, value}, index) => (
-              <Radio value={key} key={index}>{value}</Radio>
-            ))
-          }
+          {itemTypes.map(({ key, value }, index) => (
+            <Radio value={key} key={index}>
+              {value}
+            </Radio>
+          ))}
         </RadioGroup>
       </Card>
       <Row>
-        {
-          items.filter((item: ItemProps) => itemType === 0 || item.item_type === itemType).reverse().map(({item_id, item_name}: ItemProps, index: number) => (
-            <Col span={3} key={index} className={styles.itemitem}>
-              <img src={`https://game.gtimg.cn/images/yxzj/img201606/itemimg/${item_id}.jpg`} />
+        {items
+          .filter(
+            (item: ItemProps) => itemType === 0 || item.item_type === itemType,
+          )
+          .reverse()
+          .map(({ item_id, item_name }: ItemProps, index: number) => (
+            <Col {...ColProps} key={index} className={styles.itemitem}>
+              <img
+                src={`https://game.gtimg.cn/images/yxzj/img201606/itemimg/${item_id}.jpg`}
+              />
               <p>{item_name}</p>
             </Col>
-          ))
-        }
+          ))}
       </Row>
     </div>
   );
-}
+};
 
-export default connect(({ item }: { item: ItemModelState }) => ({ item }))(Item);
+export default connect(({ item }: { item: ItemModelState }) => ({ item }))(
+  Item,
+);
