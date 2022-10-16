@@ -4,7 +4,6 @@ import styles from './index.less';
 import { Link, history } from 'umi';
 const { Header, Content, Footer } = Layout;
 
-// test
 const menuData = [
   {
     router: '/hero',
