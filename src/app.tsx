@@ -1,6 +1,4 @@
 import { ResponseError } from 'umi-request';
-import { message } from 'antd';
-
 export const request = {
     prefix: '/api',
     errorHandler: (error: ResponseError) => {
