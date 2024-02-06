@@ -1,1 +1,1 @@
-"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[23],{8722:function(l,t,n){n.r(t);var u=n(57635),o=n(93236),a=n(62086);t.default=function(){var s=(0,u.useLocation)();return console.log("location :>> ",s),(0,a.jsx)(o.Fragment,{children:(0,a.jsx)(u.Outlet,{})})}}}]);
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[23],{8722:function(_,t,n){n.r(t);var s=n(57635),E=n(93236),u=n(62086);t.default=function(){return(0,u.jsx)(E.Fragment,{children:(0,u.jsx)(s.Outlet,{})})}}}]);
