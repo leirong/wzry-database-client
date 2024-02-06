@@ -59,8 +59,10 @@ const HeroModel: HeroModelType = {
       //     }),
       // }
       // const data = yield request('/web201605/js/herolist.json', options);
-      // const data = yield request('mock/web201605/js/herolist.json');
-      const data = herolistJson;
+      const res = yield request(
+        'https://wzry-database-server.onrender.com/heros',
+      );
+      const data = res.data || herolistJson;
       const localData = [
         {
           ename: 105,

@@ -40,12 +40,14 @@ const ItemModel: ItemModelType = {
     *query({ payload }, { call, put }) {},
     *fetch({ type, payload }, { put, call, select }) {
       //   const data = yield request('mock/web201605/js/item.json');
-      const data = itemJson;
-      const localData: any = [];
+      const res = yield request(
+        'https://wzry-database-server.onrender.com/items',
+      );
+      const data = res.data || itemJson;
       yield put({
         type: 'save',
         payload: {
-          items: data || localData,
+          items: data,
         },
       });
     },

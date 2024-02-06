@@ -36,12 +36,14 @@ const SummonerModel: SummonerModelType = {
     *query({ payload }, { call, put }) {},
     *fetch({ type, payload }, { put, call, select }) {
       // const data = yield request('mock/web201605/js/summoner.json');
-      const data = summonerJson;
-      const localData: any = [];
+      const res = yield request(
+        'https://wzry-database-server.onrender.com/summoners',
+      );
+      const data = res.data || summonerJson;
       yield put({
         type: 'save',
         payload: {
-          summoners: data || localData,
+          summoners: data,
         },
       });
     },
