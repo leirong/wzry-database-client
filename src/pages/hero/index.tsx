@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
   };
 
   const toHerodetail = (ename: number) => {
-    history.push(`herodetail/${ename}`);
+    history.push(`/herodetail/${ename}`);
   };
   return (
     <PageContainer ghost>
