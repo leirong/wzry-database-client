@@ -16,33 +16,27 @@ export default defineConfig({
   routes: [
     {
       path: '/',
-      component: '@/components/layouts',
-      routes: [
-        {
-          path: '/',
-          redirect: './hero',
-        },
-        {
-          name: '英雄',
-          path: '/hero',
-          component: './hero',
-        },
-        {
-          name: '',
-          path: '/herodetail/:ename',
-          component: './herodetail/$ename.tsx',
-        },
-        {
-          name: '局内道具',
-          path: '/item',
-          component: './item',
-        },
-        {
-          name: '召唤师技能',
-          path: '/summoner',
-          component: './summoner',
-        },
-      ],
+      redirect: './hero',
+    },
+    {
+      name: '英雄',
+      path: '/hero',
+      component: './hero',
+    },
+    {
+      name: '',
+      path: '/herodetail/:ename',
+      component: './herodetail/$ename.tsx',
+    },
+    {
+      name: '局内道具',
+      path: '/item',
+      component: './item',
+    },
+    {
+      name: '召唤师技能',
+      path: '/summoner',
+      component: './summoner',
     },
   ],
   npmClient: 'pnpm',
