@@ -1,12 +1,9 @@
-import React, { FC } from 'react';
-import styles from './item.less';
-import { connect, ItemModelState, ConnectProps, ItemProps } from 'umi';
-import { Row, Col, Card, Radio } from 'antd';
+import { PageContainer } from '@ant-design/pro-components';
+import { useModel } from '@umijs/max';
+import { Card, Col, Radio, Row } from 'antd';
+import { FC, useState } from 'react';
+import styles from './index.less';
 const RadioGroup = Radio.Group;
-
-interface PageProps extends ConnectProps {
-  item: ItemModelState;
-}
 
 const itemTypes = [
   { key: 0, value: '全部' },
@@ -26,18 +23,14 @@ const ColProps = {
   xl: 3,
 };
 
-const Item: FC<PageProps> = (props) => {
-  const {
-    item: { name, items, itemType },
-    dispatch,
-  } = props;
+const Item: FC = () => {
+  const { items } = useModel('items');
+  const [itemType, setItemType] = useState(0);
   const onChange = (e: any) => {
-    dispatch({ type: 'item/save', payload: { itemType: e.target.value } });
+    setItemType(e.target.value);
   };
   return (
-    <div>
-      {/* <h1 className={styles.title}>Page {name}</h1>
-      <h2>This is {JSON.stringify(items)}</h2> */}
+    <PageContainer ghost>
       <Card className={styles.card}>
         <RadioGroup onChange={onChange} value={itemType}>
           {itemTypes.map(({ key, value }, index) => (
@@ -50,10 +43,10 @@ const Item: FC<PageProps> = (props) => {
       <Row>
         {items
           .filter(
-            (item: ItemProps) => itemType === 0 || item.item_type === itemType,
+            (item: API.Item) => itemType === 0 || item.item_type === itemType,
           )
           .reverse()
-          .map(({ item_id, item_name }: ItemProps, index: number) => (
+          .map(({ item_id, item_name }: API.Item, index: number) => (
             <Col {...ColProps} key={index} className={styles.itemitem}>
               <img
                 src={`https://game.gtimg.cn/images/yxzj/img201606/itemimg/${item_id}.jpg`}
@@ -62,10 +55,8 @@ const Item: FC<PageProps> = (props) => {
             </Col>
           ))}
       </Row>
-    </div>
+    </PageContainer>
   );
 };
 
-export default connect(({ item }: { item: ItemModelState }) => ({ item }))(
-  Item,
-);
+export default Item;

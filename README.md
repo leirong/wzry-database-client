@@ -1,18 +1,25 @@
-# umi project
+# 王者荣耀英雄资料库前端
 
 ## Getting Started
 
 Install dependencies,
 
 ```bash
-$ yarn
+$ pnpm install
 ```
 
 Start the dev server,
 
 ```bash
-$ yarn start
+$ pnpm dev
 ```
 
-# gh-pages
+## Deploy
+
+```bash
+$ pnpm deploy
+```
+
+## gh-pages
+
 https://leirong.github.io/wzry-database-client/
