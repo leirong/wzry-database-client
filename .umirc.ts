@@ -42,6 +42,11 @@ export default defineConfig({
       path: '/summoner',
       component: './summoner',
     },
+    {
+      path: '*',
+      layout: false,
+      component: './404',
+    },
   ],
   npmClient: 'pnpm',
 });

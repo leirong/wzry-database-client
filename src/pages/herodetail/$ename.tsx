@@ -41,7 +41,6 @@ const HeroDetail = () => {
         }}
       >
         <div className={styles.skinbox}>
-          <a>皮肤</a>
           <ul>
             {skin_names.map((item: string, index: number) => (
               <li onMouseEnter={() => onMouseEnter(index)} key={index}>
@@ -59,6 +58,7 @@ const HeroDetail = () => {
               </li>
             ))}
           </ul>
+          <a>皮肤</a>
         </div>
       </div>
     </div>

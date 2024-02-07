@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>页面未找到</title>
+    <script type="text/javascript">
+    // 检查是否是一个前端路由路径
+    if (window.location.pathname.startsWith('/wzry-database-client/')) {
+        // 替换掉 `404.html` 的路径部分，保留我们的前端路由
+        window.location.replace(`/wzry-database-client/index.html?page=${window.location.pathname}` + window.location.search + window.location.hash);
+    }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

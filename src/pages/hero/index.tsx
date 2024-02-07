@@ -67,40 +67,36 @@ const HomePage: React.FC = () => {
       </Row>
       <div className={styles.normal}>
         <div className={styles.info}>
-          <Row className={styles.freehero}>
-            <Col span={24}>
-              <p>周免英雄</p>
-              <div>
-                {freeHeros.map((data: API.Hero, index: number) => (
-                  <HeroItem
-                    data={data}
-                    itemHover={fHover}
-                    onItemHover={onFreeItemHover}
-                    thisIndex={index}
-                    key={index}
-                  />
-                ))}
-              </div>
-            </Col>
-          </Row>
+          <div className={styles.freehero}>
+            <p>周免英雄</p>
+            <div className={styles.wrap}>
+              {freeHeros.map((data: API.Hero, index: number) => (
+                <HeroItem
+                  data={data}
+                  itemHover={fHover}
+                  onItemHover={onFreeItemHover}
+                  thisIndex={index}
+                  key={index}
+                />
+              ))}
+            </div>
+          </div>
         </div>
         <div className={styles.info}>
-          <Row className={styles.freehero}>
-            <Col span={24}>
-              <p>新手推荐</p>
-              <div>
-                {noviceHeros.map((data: API.Hero, index: number) => (
-                  <HeroItem
-                    data={data}
-                    itemHover={nHover}
-                    onItemHover={onNewbieItemHover}
-                    thisIndex={index}
-                    key={index}
-                  />
-                ))}
-              </div>
-            </Col>
-          </Row>
+          <div className={styles.freehero}>
+            <p>新手推荐</p>
+            <div className={styles.wrap}>
+              {noviceHeros.map((data: API.Hero, index: number) => (
+                <HeroItem
+                  data={data}
+                  itemHover={nHover}
+                  onItemHover={onNewbieItemHover}
+                  thisIndex={index}
+                  key={index}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </PageContainer>

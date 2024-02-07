@@ -25,11 +25,11 @@ export default ({ data, itemHover, onItemHover, thisIndex }: HeroItemProps) => {
     >
       <img
         className={styles['small']}
-        src={`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${data.ename}/${data.ename}${imgName}`}
+        src={`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${data.ename}/${data.ename}.jpg`}
       />
       <img
         className={styles['large']}
-        src={`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${data.ename}/${data.ename}${imgName}`}
+        src={`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${data.ename}/${data.ename}-freehover.png`}
       />
     </span>
   );
