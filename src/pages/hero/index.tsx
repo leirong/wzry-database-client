@@ -40,31 +40,6 @@ const HomePage: React.FC = () => {
   };
   return (
     <PageContainer ghost loading={loading}>
-      <Card className={styles.card}>
-        <RadioGroup onChange={onChange} value={heroType}>
-          {heroTypes.map(({ key, value }, index) => (
-            <Radio value={key} key={index}>
-              {value}
-            </Radio>
-          ))}
-        </RadioGroup>
-      </Card>
-      <Row>
-        {heros
-          .filter(
-            (item: API.Hero) => heroType === 0 || item.hero_type === heroType,
-          )
-          .reverse()
-          .map(({ ename, cname }: API.Hero) => (
-            <Col {...ColProps} key={ename} className={styles.heroitem}>
-              <img
-                src={`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${ename}/${ename}.jpg`}
-                onClick={() => toHerodetail(ename)}
-              />
-              <p>{cname}</p>
-            </Col>
-          ))}
-      </Row>
       <div className={styles.normal}>
         <div className={styles.info}>
           <div className={styles.freehero}>
@@ -99,6 +74,31 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </div>
+      <Card className={styles.card}>
+        <RadioGroup onChange={onChange} value={heroType}>
+          {heroTypes.map(({ key, value }, index) => (
+            <Radio value={key} key={index}>
+              {value}
+            </Radio>
+          ))}
+        </RadioGroup>
+      </Card>
+      <Row>
+        {heros
+          .filter(
+            (item: API.Hero) => heroType === 0 || item.hero_type === heroType,
+          )
+          .reverse()
+          .map(({ ename, cname }: API.Hero) => (
+            <Col {...ColProps} key={ename} className={styles.heroitem}>
+              <img
+                src={`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${ename}/${ename}.jpg`}
+                onClick={() => toHerodetail(ename)}
+              />
+              <p>{cname}</p>
+            </Col>
+          ))}
+      </Row>
     </PageContainer>
   );
 };

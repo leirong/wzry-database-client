@@ -1,5 +1,6 @@
+import { RollbackOutlined } from '@ant-design/icons';
 import { history, useModel, useParams } from '@umijs/max';
-import { Button } from 'antd';
+import { FloatButton } from 'antd';
 import { useEffect, useMemo, useState } from 'react';
 import styles from './ename.less';
 
@@ -29,15 +30,15 @@ const HeroDetail = () => {
 
   return (
     <div>
-      <Button type="link" onClick={toHero}>
-        {'<<返回英雄列表'}
-      </Button>
+      <FloatButton
+        className={styles.floatbtn}
+        icon={<RollbackOutlined />}
+        onClick={toHero}
+      />
       <div
+        className={styles.bg}
         style={{
-          width: '100%',
-          height: 700,
-          position: 'relative',
-          background: `url('https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/${ename}/${ename}-bigskin-${skinIndex}.jpg') center 0px`,
+          background: `url('https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/${ename}/${ename}-bigskin-${skinIndex}.jpg') center center / cover no-repeat`,
         }}
       >
         <div className={styles.skinbox}>
