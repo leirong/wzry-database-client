@@ -1,19 +1,10 @@
+import { itemTypes } from '@/constants/item';
 import { PageContainer } from '@ant-design/pro-components';
 import { useModel } from '@umijs/max';
-import { Card, Col, Radio, Row } from 'antd';
+import { Card, Col, Radio, Row, Tooltip } from 'antd';
 import { FC, useState } from 'react';
 import styles from './index.less';
 const RadioGroup = Radio.Group;
-
-const itemTypes = [
-  { key: 0, value: '全部' },
-  { key: 1, value: '攻击' },
-  { key: 2, value: '法术' },
-  { key: 3, value: '防御' },
-  { key: 4, value: '移动' },
-  { key: 5, value: '打野' },
-  { key: 7, value: '辅助' },
-];
 
 const ColProps = {
   xs: 12,
@@ -24,13 +15,39 @@ const ColProps = {
 };
 
 const Item: FC = () => {
-  const { items } = useModel('items');
+  const { items, loading } = useModel('items');
   const [itemType, setItemType] = useState(0);
   const onChange = (e: any) => {
     setItemType(e.target.value);
   };
+  const renderTitle = (item: API.Item) => {
+    const descs = Object.keys(item).filter((key) => key.startsWith('des'));
+    return (
+      <div style={{ display: 'flex', padding: 10 }}>
+        <div style={{ marginRight: 10, width: 150 }}>
+          <img
+            src={`https://game.gtimg.cn/images/yxzj/img201606/itemimg/${item.item_id}.jpg`}
+          />
+          {descs.map((desc, i) => (
+            <div
+              key={i}
+              style={{ color: '#4BA8F9' }}
+              dangerouslySetInnerHTML={{ __html: item[desc as keyof API.Item] }}
+            />
+          ))}
+        </div>
+        <div>
+          <p style={{ color: '#3BFD40', fontSize: 20, fontWeight: 'bold' }}>
+            {item.item_name}
+          </p>
+          <p style={{ color: '#DA9D36' }}>售价：{item.price}</p>
+          <p style={{ color: '#DA9D36' }}>总价：{item.total_price}</p>
+        </div>
+      </div>
+    );
+  };
   return (
-    <PageContainer ghost>
+    <PageContainer ghost loading={loading}>
       <Card className={styles.card}>
         <RadioGroup onChange={onChange} value={itemType}>
           {itemTypes.map(({ key, value }, index) => (
@@ -45,13 +62,17 @@ const Item: FC = () => {
           .filter(
             (item: API.Item) => itemType === 0 || item.item_type === itemType,
           )
-          .reverse()
-          .map(({ item_id, item_name }: API.Item, index: number) => (
+          .map((item: API.Item, index: number) => (
             <Col {...ColProps} key={index} className={styles.itemitem}>
-              <img
-                src={`https://game.gtimg.cn/images/yxzj/img201606/itemimg/${item_id}.jpg`}
-              />
-              <p>{item_name}</p>
+              <Tooltip
+                title={renderTitle(item)}
+                overlayInnerStyle={{ width: 300 }}
+              >
+                <img
+                  src={`https://game.gtimg.cn/images/yxzj/img201606/itemimg/${item.item_id}.jpg`}
+                />
+                <p>{item.item_name}</p>
+              </Tooltip>
             </Col>
           ))}
       </Row>

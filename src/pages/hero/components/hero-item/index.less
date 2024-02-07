@@ -1,14 +1,43 @@
 .freehero-item {
-    border-radius: 5px;
-    height: 69px;
-    margin: 5px;
-    width: 69px;
-    transition: 0.4s ease-in-out;
-}
-.freehero-item-active {
-    border-radius: 5px;
-    height: 69px;
-    margin: 5px;
+  border-radius: 5px;
+  height: 69px;
+  margin: 5px;
+  width: 69px;
+  transition: 0.4s ease-in-out;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  .small {
+    opacity: 1;
+  }
+  .large {
+    opacity: 0;
+  }
+  &.active {
     width: 224px;
-    transition: 0.4s ease-in-out;
+    .small {
+      opacity: 0;
+    }
+    .large {
+      opacity: 1;
+    }
+  }
+}
+
+.small {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 5px;
+  height: 69px;
+  width: 69px;
+}
+
+.large {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 5px;
+  height: 69px;
+  width: 224px;
 }

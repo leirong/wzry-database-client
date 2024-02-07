@@ -13,6 +13,10 @@ export default defineConfig({
   layout: {
     title: '王者荣耀资料库',
   },
+  headScripts: [
+    // 解决首次加载时白屏的问题
+    { src: '/wzry-database-client/scripts/loading.js', async: true },
+  ],
   routes: [
     {
       path: '/',

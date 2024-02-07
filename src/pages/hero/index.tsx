@@ -1,19 +1,11 @@
+import { heroTypes } from '@/constants/hero';
 import { PageContainer } from '@ant-design/pro-components';
 import { history, useModel } from '@umijs/max';
 import { Card, Col, Radio, Row } from 'antd';
 import { useState } from 'react';
-import FreeHeroItem from './components/hero-item';
+import HeroItem from './components/hero-item';
 import styles from './index.less';
 const RadioGroup = Radio.Group;
-const heroTypes = [
-  { key: 0, value: '全部' },
-  { key: 1, value: '战士' },
-  { key: 2, value: '法师' },
-  { key: 3, value: '坦克' },
-  { key: 4, value: '刺客' },
-  { key: 5, value: '射手' },
-  { key: 6, value: '辅助' },
-];
 
 const ColProps = {
   xs: 12,
@@ -24,7 +16,7 @@ const ColProps = {
 };
 
 const HomePage: React.FC = () => {
-  const { heros, freeHeros, noviceHeros } = useModel('heros');
+  const { heros, freeHeros, noviceHeros, loading } = useModel('heros');
 
   const [fHover, setFHover] = useState(0);
   const [nHover, setNHover] = useState(0);
@@ -47,7 +39,7 @@ const HomePage: React.FC = () => {
     history.push(`/herodetail/${ename}`);
   };
   return (
-    <PageContainer ghost>
+    <PageContainer ghost loading={loading}>
       <Card className={styles.card}>
         <RadioGroup onChange={onChange} value={heroType}>
           {heroTypes.map(({ key, value }, index) => (
@@ -80,7 +72,7 @@ const HomePage: React.FC = () => {
               <p>周免英雄</p>
               <div>
                 {freeHeros.map((data: API.Hero, index: number) => (
-                  <FreeHeroItem
+                  <HeroItem
                     data={data}
                     itemHover={fHover}
                     onItemHover={onFreeItemHover}
@@ -98,7 +90,7 @@ const HomePage: React.FC = () => {
               <p>新手推荐</p>
               <div>
                 {noviceHeros.map((data: API.Hero, index: number) => (
-                  <FreeHeroItem
+                  <HeroItem
                     data={data}
                     itemHover={nHover}
                     onItemHover={onNewbieItemHover}

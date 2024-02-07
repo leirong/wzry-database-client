@@ -13,7 +13,7 @@ const ColProps = {
 };
 
 const Summoner: FC = () => {
-  const { summoners } = useModel('summoners');
+  const { summoners, loading } = useModel('summoners');
   const [summonerItem, setSummonerItem] = useState<API.Summoner | undefined>();
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Summoner: FC = () => {
     setSummonerItem(summonerObj);
   };
   return (
-    <PageContainer ghost>
+    <PageContainer ghost loading={loading}>
       <div className={styles.main}>
         <Row className={styles.summoner_left}>
           {summoners.map((item: API.Summoner, index: number) => (

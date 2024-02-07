@@ -1,29 +1,36 @@
+import classNames from 'classnames';
 import styles from './index.less';
 
-interface FreeHeroItemProps {
+interface HeroItemProps {
   data: API.Hero;
   itemHover: number;
   onItemHover: (thisIndex: number) => void;
   thisIndex: number;
 }
 
-export default ({
-  data,
-  itemHover,
-  onItemHover,
-  thisIndex,
-}: FreeHeroItemProps) => {
+export default ({ data, itemHover, onItemHover, thisIndex }: HeroItemProps) => {
   const isHover = itemHover === thisIndex;
   const imgName = isHover ? '-freehover.png' : '.jpg';
+  const onMouseEnter = () => {
+    if (!isHover) {
+      onItemHover(thisIndex);
+    }
+  };
   return (
-    <img
-      className={
-        isHover ? styles['freehero-item-active'] : styles['freehero-item']
-      }
-      onMouseEnter={() => {
-        !isHover && onItemHover(thisIndex);
-      }}
-      src={`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${data.ename}/${data.ename}${imgName}`}
-    />
+    <span
+      className={classNames(styles['freehero-item'], {
+        [styles['active']]: isHover,
+      })}
+      onMouseEnter={onMouseEnter}
+    >
+      <img
+        className={styles['small']}
+        src={`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${data.ename}/${data.ename}${imgName}`}
+      />
+      <img
+        className={styles['large']}
+        src={`https://game.gtimg.cn/images/yxzj/img201606/heroimg/${data.ename}/${data.ename}${imgName}`}
+      />
+    </span>
   );
 };
