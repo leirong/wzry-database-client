@@ -17,6 +17,19 @@ export default defineConfig({
     // 解决首次加载时白屏的问题
     { src: '/wzry-database-client/scripts/loading.js', async: true },
   ],
+  metas: [
+    {
+      name: 'keywords',
+      content:
+        '王者荣耀英雄,王者荣耀英雄介绍,王者荣耀英雄大全,王者荣耀英雄资料',
+    },
+    {
+      name: 'description',
+      content:
+        '王者荣耀英雄介绍,全部英雄大全,英雄属性，英雄图片,英雄技能定位，英雄故事，英雄图文视频攻略，助您荣登最强王者宝座!',
+    },
+  ],
+  favicons: ['/wzry-database-client/favicon.ico'],
   routes: [
     {
       path: '/',
@@ -41,6 +54,11 @@ export default defineConfig({
       name: '召唤师技能',
       path: '/summoner',
       component: './summoner',
+    },
+    {
+      name: '英雄数据',
+      path: '/hero-data',
+      component: './hero-data',
     },
     {
       path: '*',
