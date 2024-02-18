@@ -17,6 +17,7 @@
     "@ant-design/pro-components": "^2.4.4",
     "@umijs/max": "^4.1.1",
     "antd": "^5.4.0",
+    "classnames": "^2.5.1",
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
