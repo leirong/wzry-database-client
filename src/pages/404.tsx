@@ -19,6 +19,9 @@ const NoFoundPage: React.FC = () => {
   } else if (pathname.startsWith('/wzry-database-client/herodetail/')) {
     history.push('/herodetail/' + pathname.split('/')[3]);
     return empty;
+  } else if (pathname.startsWith('/wzry-database-client/hero-data')) {
+    history.push('/hero-data');
+    return empty;
   }
   return (
     <Result
