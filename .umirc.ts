@@ -30,6 +30,15 @@ export default defineConfig({
     },
   ],
   favicons: ['/wzry-database-client/favicon.ico'],
+  exportStatic: {
+    extraRoutePaths: async () => {
+      const res = await fetch(
+        'https://wzry-database-server.onrender.com/heros',
+      );
+      const data: { code: number; data: API.Hero[] } = await res.json();
+      return data.data.map((item) => `/herodetail/${item.ename}`);
+    },
+  },
   routes: [
     {
       path: '/',

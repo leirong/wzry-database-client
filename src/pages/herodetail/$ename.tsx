@@ -21,7 +21,7 @@ const HeroDetail = () => {
   }, [ename, heros.length]);
 
   const skin_names = useMemo(() => {
-    return heroItem ? heroItem.skin_name.split('|') : [];
+    return heroItem && heroItem?.skin_name  ? heroItem.skin_name.split('|') : [];
   }, [heroItem]);
 
   const toHero = () => {
