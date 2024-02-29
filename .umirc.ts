@@ -19,6 +19,10 @@ export default defineConfig({
   ],
   metas: [
     {
+      name: 'google-site-verification',
+      content :'RTCnrKT7eKSyInqZDEucuctL4q06-zNoX0xBTkMLhOk'
+    },
+    {
       name: 'keywords',
       content:
         '王者荣耀英雄,王者荣耀英雄介绍,王者荣耀英雄大全,王者荣耀英雄资料',
